@@ -7,7 +7,7 @@ let ball = {
   radius: 15,
   dx: 3,
   dy: 3,
-  color: 'blue'
+  color: 'green'
 };
 
 function drawBall() {
