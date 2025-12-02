@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>*baritone + reverb voice* ohh yeahhhh</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Ball Game</title>
+  <style>
+    canvas {
+      background-color: #f0f0f0;
+      display: block;
+      margin: 50px auto;
+      border: 2px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="500" height="400"></canvas>
 
-		<style>
-canvas {
-	background-color: #f0f0f0;
-	display: block;
-	margin: 50px auto;
-	border:2px solid #000;
-}
-		</style>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-	</head>
-	<body>
-		<canvas id="gameCanvas" width="800" height="500"</canvas>
-		<script src="game.js"></script>
-	</body>
+    let ball = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      radius: 15,
+      dx: 3,
+      dy: 3,
+      color: 'blue'
+    };
+
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fillStyle = ball.color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function update() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBall();
+
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+        ball.dx = -ball.dx;
+      }
+      if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+        ball.dy = -ball.dy;
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    update();
+  </script>
+</body>
 </html>
+
