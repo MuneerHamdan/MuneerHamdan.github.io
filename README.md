@@ -1,3 +1,3 @@
 3818c
 
-<a href="https://muneerhamdan.github.io/first.md">huh??</a>
+[huh??](https://muneerhamdan.github.io/first.md)
