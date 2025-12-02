@@ -7,8 +7,18 @@
 
 		<h1 id="demo">game or wtvr</h1>
 
+		<canvas id="canv" width="200" height="200" style="border:1px solid #000000;">
+		</canvas>
+
 		<script>
-			document.getElementById("demo").innerHTML = "hello";
+			const canvas = document.getElementById("canv");
+			const ctx = canvas.getContext("2d");
+
+			ctx.beginPath();
+			ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+			ctx.fillSTyle = "green";
+			ctx.fill();
+			ctx.stroke();
 		</script>
 
 	</body>
