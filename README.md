@@ -1,3 +1,4 @@
+<pre>
 this is my first journal entry.. woah
 
 today my laptop screen died (again) so now im using my old pc. 
@@ -200,3 +201,4 @@ ALRIGHT THATS FAR ENOUGH MISTER. I'VE HAD IT WITH YOUR SHENANIGANS. YOU ARE GOIN
 
 
 nice try but you'll never get the secret password
+</pre>
