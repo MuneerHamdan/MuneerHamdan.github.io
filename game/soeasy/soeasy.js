@@ -13,8 +13,8 @@ let ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
   radius: 15,
-  dx: 3,
-  dy: 3,
+  dx: 10,
+  dy: 10,
   color: 'green'
 };
 
