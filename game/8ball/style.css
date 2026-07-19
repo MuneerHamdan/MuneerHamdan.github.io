@@ -6,6 +6,8 @@ body {
 }
 
 canvas {
-    border: 15px solid #4b2a12;
+    #border
+    border: 15px solid #ffffff;
+    #table
     background: #000000;
 }

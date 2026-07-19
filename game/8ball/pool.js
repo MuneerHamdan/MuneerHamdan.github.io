@@ -186,7 +186,7 @@ function draw(){
 
     // pockets
 
-    ctx.fillStyle="black";
+    ctx.fillStyle="white";
 
     [
         [0,0],
