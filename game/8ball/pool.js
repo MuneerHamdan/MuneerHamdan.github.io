@@ -113,22 +113,26 @@ function checkCollisions() {
 
             let dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < radius * 2) {
+            let minDist = radius * 2;
 
-                // prevent zero distance
+
+            if (dist < minDist) {
+
+                // avoid zero distance
                 if (dist === 0) {
-                    dx = radius * 2;
+                    dx = minDist;
                     dy = 0;
-                    dist = radius * 2;
+                    dist = minDist;
                 }
+
 
                 // collision normal
                 let nx = dx / dist;
                 let ny = dy / dist;
 
 
-                // push balls apart
-                let overlap = radius * 2 - dist;
+                // separate overlap
+                let overlap = minDist - dist;
 
                 a.x -= nx * overlap / 2;
                 a.y -= ny * overlap / 2;
@@ -137,39 +141,32 @@ function checkCollisions() {
                 b.y += ny * overlap / 2;
 
 
-                // relative velocity
-                let rvx = b.vx - a.vx;
-                let rvy = b.vy - a.vy;
+
+                // velocity difference
+                let dvx = a.vx - b.vx;
+                let dvy = a.vy - b.vy;
 
 
-                // velocity along collision normal
-                let velocityAlongNormal =
-                    rvx * nx + rvy * ny;
+                // speed along collision axis
+                let impactSpeed =
+                    dvx * nx + dvy * ny;
 
 
-                // balls are separating
-                if (velocityAlongNormal > 0) {
-                    continue;
+                // only bounce if moving toward each other
+                if (impactSpeed > 0) {
+
+
+                    // equal mass collision
+                    let impulse = impactSpeed;
+
+
+                    a.vx -= impulse * nx;
+                    a.vy -= impulse * ny;
+
+                    b.vx += impulse * nx;
+                    b.vy += impulse * ny;
+
                 }
-
-
-                // perfectly elastic collision
-                let restitution = 1.0; // 1 = no energy loss
-
-                let impulse =
-                    -(1 + restitution) * velocityAlongNormal / 2;
-
-
-                let ix = impulse * nx;
-                let iy = impulse * ny;
-
-
-                // apply impulse
-                a.vx -= ix;
-                a.vy -= iy;
-
-                b.vx += ix;
-                b.vy += iy;
 
             }
         }
