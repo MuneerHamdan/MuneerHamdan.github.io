@@ -64,8 +64,8 @@ canvas.addEventListener("click", ()=>{
 
     let cue = balls[0];
 
-    let dx = cue.x + mouseX;
-    let dy = cue.y + mouseY;
+    let dx = cue.x - mouseX;
+    let dy = cue.y - mouseY;
 
     cue.vx = dx * 0.08;
     cue.vy = dy * 0.08;
