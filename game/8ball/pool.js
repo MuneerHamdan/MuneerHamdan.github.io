@@ -48,8 +48,8 @@ function createBalls() {
 createBalls();
 
 
-let mouseX = 450;
-let mouseY = 0;
+let mouseX = 0;
+let mouseY = 450;
 
 
 canvas.addEventListener("mousemove", e=>{
