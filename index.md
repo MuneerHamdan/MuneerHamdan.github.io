@@ -12,5 +12,5 @@ what is there to expect
 [urgg 2 >:((](/game/soeasy/soeasy.html)
 
 ## new section!
- - [whats this?](/game/8ball/game.html)
+ - [whats this?](/game/8ball/index.html)
  - don't know
