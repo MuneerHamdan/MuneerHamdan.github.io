@@ -48,7 +48,7 @@ function createBalls() {
 createBalls();
 
 
-let mouseX = 0;
+let mouseX = 450;
 let mouseY = 0;
 
 
