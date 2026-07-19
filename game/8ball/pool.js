@@ -98,39 +98,83 @@ function update(){
 }
 
 
-function checkCollisions(){
 
-    for(let i=0;i<balls.length;i++){
+function checkCollisions() {
 
-        for(let j=i+1;j<balls.length;j++){
+    for (let i = 0; i < balls.length; i++) {
 
-            let a=balls[i];
-            let b=balls[j];
+        for (let j = i + 1; j < balls.length; j++) {
 
-            let dx=b.x-a.x;
-            let dy=b.y-a.y;
+            let a = balls[i];
+            let b = balls[j];
 
-            let dist=Math.sqrt(dx*dx+dy*dy);
+            let dx = b.x - a.x;
+            let dy = b.y - a.y;
+
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < radius * 2) {
+
+                // prevent zero distance
+                if (dist === 0) {
+                    dx = radius * 2;
+                    dy = 0;
+                    dist = radius * 2;
+                }
+
+                // collision normal
+                let nx = dx / dist;
+                let ny = dy / dist;
 
 
-            if(dist < radius*2){
+                // push balls apart
+                let overlap = radius * 2 - dist;
 
-                let angle=Math.atan2(dy,dx);
+                a.x -= nx * overlap / 2;
+                a.y -= ny * overlap / 2;
 
-                let speedA=Math.sqrt(a.vx*a.vx+a.vy*a.vy);
-                let speedB=Math.sqrt(b.vx*b.vx+b.vy*b.vy);
+                b.x += nx * overlap / 2;
+                b.y += ny * overlap / 2;
 
 
-                a.vx=Math.cos(angle)*speedB;
-                a.vy=Math.sin(angle)*speedB;
+                // relative velocity
+                let rvx = b.vx - a.vx;
+                let rvy = b.vy - a.vy;
 
-                b.vx=-Math.cos(angle)*speedA;
-                b.vy=-Math.sin(angle)*speedA;
+
+                // velocity along collision normal
+                let velocityAlongNormal =
+                    rvx * nx + rvy * ny;
+
+
+                // balls are separating
+                if (velocityAlongNormal > 0) {
+                    continue;
+                }
+
+
+                // perfectly elastic collision
+                let restitution = 1.0; // 1 = no energy loss
+
+                let impulse =
+                    -(1 + restitution) * velocityAlongNormal / 2;
+
+
+                let ix = impulse * nx;
+                let iy = impulse * ny;
+
+
+                // apply impulse
+                a.vx -= ix;
+                a.vy -= iy;
+
+                b.vx += ix;
+                b.vy += iy;
+
             }
         }
     }
 }
-
 
 
 function draw(){
